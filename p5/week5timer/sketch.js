@@ -1,8 +1,8 @@
 var timer = 200 ;  // declare in the global area
-
 function setup() {
   // put setup code here
   createCanvas(800, 800);
+  background('black');
 }
 
 function draw() {

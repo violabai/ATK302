@@ -1,4 +1,4 @@
-var myState;
+var = myState;
 
 
 function Setup() {
@@ -10,7 +10,7 @@ function Setup() {
 function draw() {
     switch (myState) {
 
-    case 0;
+    case 0:
     background(255,0,0)
     fill('white');
     textSize(100);

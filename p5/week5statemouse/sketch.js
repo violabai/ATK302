@@ -13,12 +13,12 @@ switch(myState){
   text( "case0", 100, 100);
   break;
 
-  case 1;
+  case 1:
   background (0, 255 ,0);
   text( "case1", 100, 100);
   break;
 
-  case 2;
+  case 2:
   background (0, 0 ,255);
   text( "case2", 100, 100);
   break;

@@ -1,9 +1,10 @@
 var mySate = 0 ;  // declare in the global area
 var myTimer = 0;
-
+var myBColor ;
 function setup(){
   // put setup code here
   createCanvas(800, 800);
+  myBcolor = color(random(255),random(255),random(255));
 }
 
 function draw() {

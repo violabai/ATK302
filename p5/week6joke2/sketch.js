@@ -12,8 +12,9 @@ function draw() {
       background('blue');
       text("有一只公鹿 他走着走着 越走越快", 100, 100);
       fill('black');
+      myTimer ++;
       if (myTimer >=200){
-        myState = 1;
+        myState ++ ;
         myTimer = 0;
       }
       break;
@@ -25,5 +26,3 @@ function draw() {
       break;
   }
 }
-
-  

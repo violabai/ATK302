@@ -23,10 +23,10 @@ dwarves[6] = "bashful" ;
 for (var i = 0; i < dwarves.length; i++){
   console.log(dwarves[i]);
 }
+var randomNumbers = new Array(100) ;
+for (var i = 0; i < 100; i++) {
+  randomNumbers[i] = random(100) ; // put a random number in the array
+console.log("the number in space " + i + " = " + randomNumbers[i]) ;}
 
-}
-
-function draw() {
-  // put drawing code here
 
 }

@@ -1,5 +1,8 @@
 var cars = [];
 var frogPos ;
+var timer = 0;
+var myState = 0;
+var yoda, yodaright, yodaleft;
 
 function setup() {
 
@@ -7,6 +10,8 @@ function setup() {
   for (var i = 0; i < 40; i++) {
     cars.push(new Car());
   }
+  yodaleft = loadImage("assets/yodaLeft.gif");
+  yodaright = loadImage("assets/yodaRight.gif");
   frogPos = createVector(width/2, height-80) ;
   rectMode(CENTER) ;
   ellipseMode(CENTER) ;

@@ -1,8 +1,10 @@
 var cars = [];
-var frogPos ;
+var frogPos;
 var timer = 0;
 var myState = 0;
 var yoda, yodaright, yodaleft;
+var bird;
+var birds = [];
 
 function setup() {
 
@@ -12,9 +14,16 @@ function setup() {
   }
   yodaleft = loadImage("assets/yodaLeft.gif");
   yodaright = loadImage("assets/yodaRight.gif");
-  frogPos = createVector(width/2, height-80) ;
-  rectMode(CENTER) ;
-  ellipseMode(CENTER) ;
+  yoda = yodaleft
+
+  bird = loadImage("assets/bird1.png");
+  birds[0] = loadImage("assets/bird1.png")
+  birds[1] = loadImage("assets/bird2.png")
+  birds[2] = loadImage("assets/bird3.png")
+
+  frogPos = createVector(width / 2, height - 80);
+  rectMode(CENTER);
+  ellipseMode(CENTER);
 }
 
 function draw() {
@@ -23,14 +32,14 @@ function draw() {
     cars[i].display();
     cars[i].drive();
     if (cars[i].pos.dist(frogPos) < 50) {
-      cars.splice(i, 1) ;
+      cars.splice(i, 1);
     }
   }
 
   // draw the frog
-  fill('green') ;
-  ellipse(frogPos.x, frogPos.y, 60, 60) ;
-  checkForKeys() ;
+  fill('green');
+  image(yoda, frogPos.x, frogPos.y);
+  checkForKeys();
 }
 
 // car class!!
@@ -41,12 +50,21 @@ function Car() {
   this.r = random(255);
   this.g = random(255);
   this.b = random(255);
-
+  this.birdNum = floor(random(birds,length-1));
+  this.timer = 0 ;
 
   // methods
   this.display = function() {
-    fill(this.r, this.g, this.b);
-    rect(this.pos.x, this.pos.y, 100, 50);
+    image(birds[this.birdNum], this.pos.x, this.pos.y, 100, 100);
+
+    this.timer++;
+    if (this.timer > 20){
+    this.birdNum = this.birdNum + 1;
+    this.timer = 0;
+    }
+    if (this.birdNum > birds.length - 1) {
+      this.birdNum = 0;
+    }
   }
 
   this.drive = function() {
@@ -61,6 +79,10 @@ function Car() {
 
 }
 
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) yoda = yodaleft;
+  if (keyCode === RIGHT_ARROW) yoda = yodaright;
+}
 
 function checkForKeys() {
   if (keyIsDown(LEFT_ARROW)) frogPos.x = frogPos.x - 5;

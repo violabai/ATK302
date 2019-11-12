@@ -1,14 +1,18 @@
 var namesArray = [];
+var cat = 0 ;
+var dog = 0 ;
 
 function setup() {
 
   // Tabletop stuff, for getting google spreadsheet data in.
-  let url = '1GtE3eoYVWBv9zMPoyettXzDCEv6qdNGKio_hgEh5duM'; // this is KEY of the URL from the sheet
+  let url = 'https://docs.google.com/forms/d/1TSK1yslzVpA9RdLibcF3Dcg5slDtkw7IWq6HDZwZJb0/edit'; // this is KEY of the URL from the sheet
   let settings = {
     key: url, // The url of the published google sheet
     callback: gotData, // A callback for when the data comes in
     simpleSheet: true // This makes things simpler for just a single worksheet of rows
   };
+cat = loadImage('assets/download-1.jpg')
+dog = loadImage('assets/download.jpg')
 
   Tabletop.init(settings); // Grab the data from the spreadsheet!
   // End Tabletop initialization stuff
@@ -37,7 +41,7 @@ function gotData(data) {
 
 
 function draw() {
-  background('blue');
+  background('black');
 
   // // iterate through the namesArray and display the objects!
   for (let i = 0; i < namesArray.length; i++) {
@@ -57,7 +61,8 @@ function Circle(myName, myShape) {
   this.display = function() {
 
  // put an ellipse here
- ellipse(this.pos.x, this.pos.y,100,100);
+ cat(this.pos.x, this.pos.y,100,100);
+ dog(this.pos.x, this.pos.y,100,100);
   }
 
 }

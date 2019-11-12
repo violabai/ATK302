@@ -1,2 +1,0 @@
-html文件在：empty-example/index.html
-需要放在服务器或者本地服务器， 小怪才能正常显示

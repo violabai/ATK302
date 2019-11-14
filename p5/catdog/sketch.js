@@ -1,18 +1,17 @@
 var namesArray = [];
-var cat = 0 ;
-var dog = 0 ;
+var cat = 0;
+var dog = 0;
 
 function setup() {
 
   // Tabletop stuff, for getting google spreadsheet data in.
-  let url = 'https://docs.google.com/forms/d/1TSK1yslzVpA9RdLibcF3Dcg5slDtkw7IWq6HDZwZJb0/edit'; // this is KEY of the URL from the sheet
+  let url = '1kegGMiIHPyYgtKinY3BrR1GOz54fnc5hzAi0ZMfY5vE'; // this is KEY of the URL from the sheet
   let settings = {
     key: url, // The url of the published google sheet
     callback: gotData, // A callback for when the data comes in
     simpleSheet: true // This makes things simpler for just a single worksheet of rows
   };
-cat = loadImage('assets/download-1.jpg')
-dog = loadImage('assets/download.jpg')
+
 
   Tabletop.init(settings); // Grab the data from the spreadsheet!
   // End Tabletop initialization stuff
@@ -24,6 +23,9 @@ dog = loadImage('assets/download.jpg')
   ellipseMode(CENTER);
   rectMode(CENTER);
 
+  cat = loadImage('assets/download-1.jpg')
+  dog = loadImage('assets/download.jpg')
+
 }
 
 // The data comes back as an array of objects
@@ -34,7 +36,7 @@ function gotData(data) {
 
   // iterate through the array of data and create an object and push it on an array called namesArray
   for (let i = 0; i < data.length; i++) {
-    namesArray.push(new Circle(data[i].Name, data[i].Shape));
+    namesArray.push(new Circle(data[i].name, data[i].choose));
   }
 
 }
@@ -46,23 +48,34 @@ function draw() {
   // // iterate through the namesArray and display the objects!
   for (let i = 0; i < namesArray.length; i++) {
     namesArray[i].display();
+    namesArray[i].drive();
   }
 
 }
 
 
 // my circle class
-function Circle(myName, myShape) {
-  this.pos = createVector(random(width),random(height));
+function Circle(myName, myAnimal) {
+  this.pos = createVector(random(width), random(height));
   this.name = myName;
-  this.shape = myShape;
-
+  this.animal = myAnimal;
+  this.vel = createVector(random(-5, 5), random(-5, 5));
 
   this.display = function() {
 
- // put an ellipse here
- cat(this.pos.x, this.pos.y,100,100);
- dog(this.pos.x, this.pos.y,100,100);
-  }
+    if (this.animal == 'dog') {
+      image(dog, this.pos.x, this.pos.y, 100, 100);
 
+    } else {
+      image(cat, this.pos.x, this.pos.y, 100, 100);
+    }
+
+  }
+  this.drive = function() {
+    this.pos.add(this.vel);
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
 }

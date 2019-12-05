@@ -23,6 +23,7 @@ function draw() {
     switch (mouseIsPressed) {
         case true:
             image(img, [width - widthInfo] * 0.5, [height - heightInfo] * 0.5, widthInfo, heightInfo);
+              break;
         case false:
             image(imgG, [width - widthInfo] * 0.5, [height - heightInfo] * 0.5, widthInfo, heightInfo);
             break;
